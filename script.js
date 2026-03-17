@@ -7,8 +7,32 @@ let player = {};
 let currentPlayer = "X";
 let gameActive = true;
 
+const winPatterns = [
+  [1,2,3], [4,5,6], [7,8,9],
+  [1,4,7], [2,5,8], [3,6,9],
+  [1,5,9], [3,5,7]
+];
+
+
+function checkWinner() {
+	return winPatterns.some(p => p.every(id => document.getElementById(id).textContent === currentPlayer))
+}
+
 function handleClick(e){
+
+	if (!gameActive) return;
+
+	if (e.target.textContent !== "") return;
+
+	
+	
 	e.target.textContent = currentPlayer;
+
+	if (checkWinner()){
+		message.innerHTML = `<h1>${player[currentPlayer]}, congratulations you won!</h1>`
+		gameActive = false;
+		return;
+	}
 
 	currentPlayer = currentPlayer === "X" ? "O" : "X";
 	message.innerHTML = `<h1>${player[currentPlayer]}, you're up</h1>`
@@ -21,7 +45,7 @@ function createBoard(){
 	gridDiv.style.gridTemplateColumns = "repeat(3, 100px)";
 	gridDiv.style.gridTemplateRows = "repeat(3, 100px)";
 
-	for(let  i=0; i<9; i++){
+	for(let  i=1; i<=9; i++){
 		const cell = document.createElement("div");
 		cell.style.border = "1px solid black";
 		cell.className  = `cell`;
