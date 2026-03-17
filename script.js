@@ -4,7 +4,7 @@ const message = document.getElementsByClassName("message")[0];
 const mainParent = document.getElementById("main-parent");
 
 let player = {};
-let currentPlayer = "X";
+let currentPlayer = "x";
 let gameActive = true;
 
 const winPatterns = [
@@ -34,7 +34,7 @@ function handleClick(e){
 		return;
 	}
 
-	currentPlayer = currentPlayer === "X" ? "O" : "X";
+	currentPlayer = currentPlayer === "x" ? "o" : "x";
 	message.innerHTML = `<h1>${player[currentPlayer]}, you're up</h1>`
 	
 }
@@ -71,9 +71,9 @@ function playGame(){
 	}
 
 	players.style.display = "none";	
-	player = {X: player1, O: player2};
+	player = {x: player1, o: player2};
 	message.innerHTML = "";
-	message.innerHTML = `<h1>${player.X}, you're up</h1>`;
+	message.innerHTML = `<h1>${player.x}, you're up</h1>`;
 
 	createBoard();
 	
