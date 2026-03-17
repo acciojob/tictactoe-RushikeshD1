@@ -67,8 +67,8 @@ function playGame(){
 
 	players.style.display = "none";	
 	player = {x: player1, o: player2};
-	message.innerHTML = "";
-	message.innerHTML = `${player.x}, you're up`;
+	// message.innerHTML = "";
+	message.textContent = `${player.x}, you're up`;
 
 	createBoard();
 	
