@@ -62,8 +62,8 @@ function createBoard(){
 }
 
 function playGame(){
-	const player1 = document.getElementById("player-1").value;
-	const player2 = document.getElementById("player-2").value;
+	const player1 = document.getElementById("player1").value;
+	const player2 = document.getElementById("player2").value;
 
 	if (player1.trim() === "" || player2.trim() === ""){
 		alert("Please fill all fields!");
