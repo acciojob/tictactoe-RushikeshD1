@@ -18,25 +18,20 @@ function checkWinner() {
 	return winPatterns.some(p => p.every(id => document.getElementById(id).textContent === currentPlayer))
 }
 
-function handleClick(e){
+function handleClick(e) {
+  if (!gameActive) return;
+  if (e.target.textContent !== "") return;
 
-	if (!gameActive) return;
+  e.target.textContent = currentPlayer;
 
-	if (e.target.textContent !== "") return;
+  if (checkWinner()) {
+    message.textContent = `${player[currentPlayer]} congratulations you won!`;
+    gameActive = false;
+    return;
+  }
 
-	
-	
-	e.target.textContent = currentPlayer;
-
-	if (checkWinner()){
-		message.innerHTML = `<h1>${player[currentPlayer]}, congratulations you won!</h1>`
-		gameActive = false;
-		return;
-	}
-
-	currentPlayer = currentPlayer === "x" ? "o" : "x";
-	message.innerHTML = `<h1>${player[currentPlayer]}, you're up</h1>`
-	
+  currentPlayer = currentPlayer === "x" ? "o" : "x";
+  message.textContent = `${player[currentPlayer]}, you're up`;
 }
 
 function createBoard(){
@@ -73,7 +68,7 @@ function playGame(){
 	players.style.display = "none";	
 	player = {x: player1, o: player2};
 	message.innerHTML = "";
-	message.innerHTML = `<h1>${player.x}, you're up</h1>`;
+	message.innerHTML = `${player.x}, you're up`;
 
 	createBoard();
 	
